@@ -1,0 +1,8 @@
+# ablation proxy: every A1-A10 experiment runs at this size
+model:
+  vocab_size: 32768
+  n_layer: 12
+  n_head: 12
+  n_kv_head: 3
+  d_model: 768
+  max_seq_len: 2048

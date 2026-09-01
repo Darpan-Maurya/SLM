@@ -1,0 +1,10 @@
+# fixed harness for A1-A10: only ever override ONE key on top of this
+_base_: [base.yaml, ../model/slm-100m.yaml]
+train:
+  run_name: ablation
+  total_tokens: 2000000000      # 20 tokens/param on the 100M proxy
+  micro_batch_size: 16
+  eval_every: 250
+optim:
+  lr: 1.0e-3
+  warmup_steps: 400

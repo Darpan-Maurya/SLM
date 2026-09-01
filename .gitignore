@@ -1,0 +1,23 @@
+__pycache__/
+*.py[cod]
+.venv/
+.pytest_cache/
+.ruff_cache/
+*.egg-info/
+build/
+dist/
+
+# artefacts
+data/raw/
+data/tokens/
+data/eval/
+runs/
+wandb/
+*.bin
+*.bin.docs
+*.pt
+!tests/**/*.bin
+
+# local
+.DS_Store
+.env

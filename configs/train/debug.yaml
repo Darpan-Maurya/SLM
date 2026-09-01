@@ -1,0 +1,35 @@
+# tiny end-to-end smoke run: seconds on CPU, no accelerator required
+model:
+  vocab_size: 4096
+  n_layer: 4
+  n_head: 4
+  n_kv_head: 2
+  d_model: 128
+  max_seq_len: 256
+  mtp_depth: 0
+data:
+  train_dir: data/tokens/shakespeare/train
+  val_dir: data/tokens/shakespeare/val
+  num_workers: 1
+optim:
+  kind: muon
+  lr: 1.0e-3
+  muon_lr: 0.02
+  warmup_steps: 20
+  schedule: wsd
+  decay_steps: 20
+train:
+  run_name: debug
+  total_tokens: 4000000
+  global_batch_tokens: 8192
+  micro_batch_size: 8
+  dtype: float32
+  compile: false
+  log_every: 5
+  eval_every: 25
+  eval_steps: 5
+ckpt:
+  interval: 20
+  keep_last: 3
+  permanent_every: 0
+  async_save: false

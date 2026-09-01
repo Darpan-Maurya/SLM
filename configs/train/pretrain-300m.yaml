@@ -1,0 +1,20 @@
+_base_: [base.yaml, ../model/slm-300m.yaml]
+train:
+  run_name: slm-300m
+  total_tokens: 60000000000     # 200 tokens/param, see docs/RESEARCH.md R1
+  micro_batch_size: 16
+optim:
+  lr: 6.0e-4
+  warmup_steps: 2000
+data:
+  # train_dir holds one subdirectory per domain; see docs/ARCHITECTURE.md section 4.
+  # Stage 3 deliberately coincides with the WSD decay: the best data is seen when
+  # the learning rate is lowest.
+  train_dir: data/tokens/train
+  curriculum:
+    - until: 0.70
+      mixture: {web: 0.75, code: 0.15, math: 0.10}
+    - until: 0.90
+      mixture: {web: 0.55, code: 0.25, math: 0.20}
+    - until: 1.00
+      mixture: {web: 0.40, code: 0.25, math: 0.20, instruct: 0.15}

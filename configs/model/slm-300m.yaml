@@ -1,0 +1,9 @@
+# dense flagship
+model:
+  vocab_size: 32768
+  n_layer: 24
+  n_head: 16
+  n_kv_head: 4
+  d_model: 1024
+  max_seq_len: 2048
+  mtp_depth: 1

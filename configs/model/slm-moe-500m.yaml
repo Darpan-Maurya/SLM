@@ -1,0 +1,15 @@
+# sparse flagship: 528M total, 131M active
+model:
+  vocab_size: 32768
+  n_layer: 24
+  n_head: 12
+  n_kv_head: 3
+  d_model: 768
+  max_seq_len: 2048
+  moe: true
+  n_experts: 32
+  n_experts_active: 4
+  n_shared_experts: 1
+  expert_hidden: 256
+  moe_first_dense: 1
+  mtp_depth: 1
