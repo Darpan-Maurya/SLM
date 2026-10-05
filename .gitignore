@@ -1,0 +1,46 @@
+__pycache__/
+*.py[cod]
+.venv/
+.pytest_cache/
+.ruff_cache/
+*.egg-info/
+build/
+dist/
+
+# artefacts
+data/raw/
+data/tokens/
+data/eval/
+runs/
+wandb/
+*.bin
+*.bin.docs
+*.pt
+!tests/**/*.bin
+
+# local
+.DS_Store
+.env
+
+/docs/
+# tests of the private Kaggle, Colab and Hugging Face tooling
+/tests/test_pipeline_tools.py
+/tests/test_colab_mirror.py
+/tests/test_hf_export.py
+/tests/fake_kaggle.py
+/scripts/colab_train.py
+/scripts/export_hf.py
+/kaggle/
+/hf/
+/data/
+# only the configs of the published 300M run
+/configs/*
+!/configs/train/
+!/configs/model/
+/configs/train/*
+/configs/model/*
+!/configs/train/base.yaml
+!/configs/train/slm-300m-6b.yaml
+!/configs/model/slm-300m.yaml
+/colab/
+

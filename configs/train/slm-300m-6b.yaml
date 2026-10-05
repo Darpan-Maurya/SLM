@@ -1,0 +1,25 @@
+# The 300M run: Chinchilla 6.1B tokens, started on Colab A100, continued on Kaggle 2x T4.
+# Everything here is fixed for the life of the run; the runner scripts only set
+# hardware choices (data paths, dtype, micro_batch_size, checkpoint interval).
+_base_: [base.yaml, ../model/slm-300m.yaml]
+model:
+  mtp_depth: 0                  # off: 11% of compute, and no evidence it helps at 300M
+optim:
+  lr: 6.0e-4
+  muon_lr: 0.02
+  warmup_steps: 1000
+train:
+  run_name: slm-300m
+  total_tokens: 6080000000      # 20 x 304M parameters (Chinchilla) -> 11,596 steps
+  global_batch_tokens: 524288   # constant on every machine, so the schedule never changes
+  micro_batch_size: 8           # A100 40 GB; runners scale it to the GPU they get
+  dtype: bfloat16
+  compile: true
+  log_every: 10
+  eval_every: 500
+  eval_steps: 20
+ckpt:
+  interval: 60                  # ~10 min on an A100; the Kaggle runner shortens it
+  keep_last: 2
+  permanent_every: 0
+  remote_every: 1
